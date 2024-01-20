@@ -3,6 +3,7 @@ import tensorflow as tf
 import matplotlib.pyplot as plt
 from gpflow.kernels import White, RBF
 from gpflow.likelihoods import Gaussian
+from gpflow.mean_functions import Identity
 
 from deep_gp import DeepGP
 
@@ -31,7 +32,8 @@ def make_deep_GP(num_layers, X, Y, Z):
         kernels.append(kernel)
         layer_sizes.append(1)
 
-    dgp = DeepGP(X, Y, Z, kernels, layer_sizes, Gaussian(), num_samples=100, whiten=False)
+    dgp = DeepGP(X, Y, Z, kernels, layer_sizes, Gaussian(), num_samples=100,
+                 whiten=False, mean_function=Identity())
 
     # init hidden layers to be near deterministic
     for layer in dgp.layers[:-1]:

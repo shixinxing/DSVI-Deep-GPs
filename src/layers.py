@@ -169,7 +169,8 @@ class SVGPLayer(Layer):
         if not self.white:
             alpha = tf.linalg.triangular_solve(tf.transpose(self.Lu), alpha, lower=False)
 
-        f_mean = tf.matmul(alpha, self.q_mu, transpose_a=True)
+        # f_mean = tf.matmul(alpha, self.q_mu, transpose_a=True)
+        f_mean = tf.matmul(alpha, self.q_mu - self.mean_function(self.feature.Z), transpose_a=True)
         f_mean = f_mean + self.mean_function(X)
 
         alpha_tiled = tf.tile(alpha[None, :, :], [self.num_outputs, 1, 1])
@@ -228,8 +229,10 @@ class SVGPLayer(Layer):
             # [num_outputs]. cholesky_solve expects the Cholesky decomposition
             # of the left side (i.e. as first argument), therefore Lu is used
             # instead of Kuu.
-            Kinv_m = tf.linalg.cholesky_solve(self.Lu, self.q_mu)
-            KL += 0.5 * tf.reduce_sum(self.q_mu * Kinv_m)
+            # Kinv_m = tf.linalg.cholesky_solve(self.Lu, self.q_mu)
+            # KL += 0.5 * tf.reduce_sum(self.q_mu * Kinv_m)
+            Kinv_m = tf.linalg.cholesky_solve(self.Lu, self.q_mu - self.mean_function(self.mean_function(self.feature.Z)))
+            KL += 0.5 * tf.reduce_sum((self.q_mu - self.mean_function(self.feature.Z)) * Kinv_m)
         else:
             KL += 0.5 * tf.reduce_sum(tf.square(self.q_sqrt))
             KL += 0.5 * tf.reduce_sum(self.q_mu**2)
