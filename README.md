@@ -6,6 +6,8 @@ Succeeded with Mac M1 with TensorFlow=2.13, GPflow=2.2;
 + Trials
 
   -  whiten=True;
+ 
+  -  Identity mean function at the final layer;
     
   - identity prior mean function for inducing inputs $\mathbf{Z}^{(l-1)}$ at the $l$-th intermediate layer, whose form is the same as the prior mean of outputs $\mathbf{F}^{(l)}: \mathbb{E}[\mathbf{F}^{(l)}] = m(\mathbf{F}^{(l-1)})=\mathbf{F}^{(l-1)}$.
 
