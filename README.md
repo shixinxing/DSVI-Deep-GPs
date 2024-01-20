@@ -3,7 +3,7 @@
   
 Succeeded with Mac M1 with TensorFlow=2.13, GPflow=2.2;
 
-+ Trails
++ Trials
 
   -  whiten=True;
     
