@@ -32,6 +32,7 @@ def make_deep_GP(num_layers, X, Y, Z):
         kernels.append(kernel)
         layer_sizes.append(1)
 
+    # ⚠️ trials on whiten and mean function
     dgp = DeepGP(X, Y, Z, kernels, layer_sizes, Gaussian(), num_samples=100,
                  whiten=False, mean_function=Identity())
 
