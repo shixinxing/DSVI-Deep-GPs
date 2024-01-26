@@ -1,9 +1,9 @@
 # Doubly Stochastic Variational Inference for Deep Gaussian Processes
-+ New Environment Test
++ **New Environment Test**
   
 Succeeded with Mac M1 with TensorFlow=2.13, GPflow=2.2;
 
-+ Trials
++ **Trials**
 
   -  whiten=True;
  
@@ -11,7 +11,7 @@ Succeeded with Mac M1 with TensorFlow=2.13, GPflow=2.2;
     
   - identity prior mean function for inducing inputs $\mathbf{Z}^{(l-1)}$ at the $l$-th intermediate layer, whose form is the same as the prior mean of outputs $\mathbf{F}^{(l)}: \mathbb{E}[\mathbf{F}^{(l)}] = m(\mathbf{F}^{(l-1)})=\mathbf{F}^{(l-1)}$.
 
-+ from the forked: 
++ **from the forked**: 
   
 🤿 Implementation of doubly stochastic deep Gaussian Process using [GPflow 2.0](https://github.com/GPflow/GPflow) and [TensorFlow 2.0](https://github.com/tensorflow/tensorflow).
 
