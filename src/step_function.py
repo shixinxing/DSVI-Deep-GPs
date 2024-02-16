@@ -37,7 +37,7 @@ def make_deep_GP(num_layers, X, Y, Z):
                  whiten=False, mean_function=Identity())
 
     # init hidden layers to be near deterministic
-    for layer in dgp.layers[:-1]:
+    for layer in dgp.layers[:-1]:   # Note: not including the final layer
         layer.q_sqrt.assign(layer.q_sqrt * 1e-5)
     return dgp
 
